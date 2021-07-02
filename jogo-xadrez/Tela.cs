@@ -6,9 +6,10 @@ namespace jogo_xadrez
     {
         public static void ImprimirTabuleiro(Tabuleiro tab)
         {
-            for(int i = 0; i < tab.linhas; i++)
+            for (int i = 0; i < tab.linhas; i++)        
             {
-                for(int j = 0; j < tab.colunas; j++)
+                Console.Write(8 - i + " ");
+                for (int j = 0; j < tab.colunas; j++)
                 {
                     if(tab.getPeca(i,j) == null)
                     {
@@ -20,6 +21,24 @@ namespace jogo_xadrez
                     }
                 }
                 Console.WriteLine();
+            }
+
+            Console.WriteLine("  a b c d e f g h");
+        }
+
+        public static void ImprimirPeca(Peca peca)
+        {
+            if(peca.cor == Cor.Branca)
+            {
+                Console.Write(peca);
+            }
+            else
+            {
+                // logica para trocar a cor das peças na hora de imprimir no console
+                ConsoleColor corAtual = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write(peca);
+                Console.ForegroundColor = corAtual;
             }
         }
     }

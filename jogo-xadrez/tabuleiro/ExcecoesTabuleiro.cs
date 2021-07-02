@@ -1,12 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace jogo_xadrez.tabuleiro
+
+namespace tabuleiro
 {
-    class ExcecoesTabuleiro
+    class ExcecoesTabuleiro: Exception 
     {
+        public ExcecoesTabuleiro(string mensagem) : base(mensagem)
+        {
+
+        }
     }
 }
