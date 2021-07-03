@@ -17,7 +17,8 @@ namespace jogo_xadrez
                     }
                     else
                     {
-                        Console.Write(tab.getPeca(i, j) + " ");
+                        ImprimirPeca(tab.getPeca(i, j));
+                        Console.Write(" ");
                     }
                 }
                 Console.WriteLine();

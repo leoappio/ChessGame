@@ -1,5 +1,6 @@
 ﻿using System;
 using tabuleiro;
+using xadrez;
 
 namespace jogo_xadrez
 {
@@ -7,10 +8,10 @@ namespace jogo_xadrez
     {
         static void Main(string[] args)
         {
-            Tabuleiro tab = new Tabuleiro();
 
+            PartidaDeXadrez partida = new PartidaDeXadrez();
             
-            Tela.ImprimirTabuleiro(tab);
+            Tela.ImprimirTabuleiro(partida.tab);
 
 
 
