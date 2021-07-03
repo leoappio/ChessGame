@@ -7,12 +7,15 @@ namespace xadrez
         public Tabuleiro tab { get; private set; }
         private int turno;
         private Cor jogadorAtual;
+        public bool terminada { get; private set; }
+
 
         public PartidaDeXadrez()
         {
             tab = new Tabuleiro();
             turno = 1;
             jogadorAtual = Cor.Branca;
+            terminada = false;
             ColocarPecas();
 
         }
