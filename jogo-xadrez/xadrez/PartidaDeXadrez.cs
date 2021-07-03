@@ -69,6 +69,26 @@ namespace xadrez
 
             }
 
+            //jogada especial - en passant
+            if (peca is Peao)
+            {
+                if(origem.coluna != destino.coluna && pecaCapturada == null)
+                {
+                    Posicao posP;
+                    if(peca.cor == Cor.Branca)
+                    {
+                        posP = new Posicao(destino.linha + 1, destino.coluna);
+                    }
+                    else
+                    {
+                        posP = new Posicao(destino.linha - 1, destino.coluna);
+                    }
+                    pecaCapturada = tab.retirarPeca(posP); 
+                    capturadas.Add(pecaCapturada);
+                }
+            }
+
+
             return pecaCapturada;
         }
 
@@ -177,6 +197,18 @@ namespace xadrez
                 mudaJogador();
             }
 
+            Peca p = tab.getPeca(destino);
+
+            // jogada especial en passant
+            if(p is Peao && (destino.linha == origem.linha - 2 || destino.linha == destino.linha + 2))
+            {
+                vulneravelEnPassant = p;
+            }
+            else
+            {
+                vulneravelEnPassant = null;
+            }
+
         }
 
         public void desfazMovimento(Posicao origem, Posicao destino, Peca pecaCapturada)
@@ -214,6 +246,28 @@ namespace xadrez
                 Torre.decrementarQteMovimentos();
                 tab.colocarPeca(Torre, origemDaTorre);
 
+            }
+
+            // jogada especial - en passant
+            if( p is Peao)
+            {
+                if(origem.coluna != destino.coluna && pecaCapturada == vulneravelEnPassant)
+                {
+                    Peca peao = tab.retirarPeca(destino);
+                    Posicao posP;
+
+                    if(p.cor == Cor.Branca)
+                    {
+                        posP = new Posicao(3, destino.coluna);
+                    }
+                    else
+                    {
+                        posP = new Posicao(4, destino.coluna);
+                    }
+
+                    tab.colocarPeca(peao, posP);
+
+                }
             }
 
 
