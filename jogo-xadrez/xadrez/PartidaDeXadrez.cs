@@ -43,6 +43,32 @@ namespace xadrez
             {
                 capturadas.Add(pecaCapturada);
             }
+
+            // jogada especial - roque pequeno 
+            if(peca is Rei && destino.coluna == origem.coluna + 2)
+            {
+                Posicao origemDaTorre = new Posicao(origem.linha, origem.coluna + 3);
+                Posicao destinoDaTorre = new Posicao(origem.linha, origem.coluna + 1);
+
+                Peca Torre = tab.retirarPeca(origemDaTorre);
+                Torre.IncrementarQteMovimentos();
+                tab.colocarPeca(Torre, destinoDaTorre);
+
+            }
+
+
+            // jogada especial - roque grande 
+            if (peca is Rei && destino.coluna == origem.coluna - 2)
+            {
+                Posicao origemDaTorre = new Posicao(origem.linha, origem.coluna - 4);
+                Posicao destinoDaTorre = new Posicao(origem.linha, origem.coluna - 1);
+
+                Peca Torre = tab.retirarPeca(origemDaTorre);
+                Torre.IncrementarQteMovimentos();
+                tab.colocarPeca(Torre, destinoDaTorre);
+
+            }
+
             return pecaCapturada;
         }
 
@@ -165,6 +191,32 @@ namespace xadrez
             }
 
             tab.colocarPeca(p, origem);
+
+            // jogada especial - roque pequeno 
+            if (p is Rei && destino.coluna == origem.coluna + 2)
+            {
+                Posicao origemDaTorre = new Posicao(origem.linha, origem.coluna + 3);
+                Posicao destinoDaTorre = new Posicao(origem.linha, origem.coluna + 1);
+
+                Peca Torre = tab.retirarPeca(destinoDaTorre);
+                Torre.decrementarQteMovimentos();
+                tab.colocarPeca(Torre, origemDaTorre);
+
+            }
+
+            // jogada especial - roque grande 
+            if (p is Rei && destino.coluna == origem.coluna - 2)
+            {
+                Posicao origemDaTorre = new Posicao(origem.linha, origem.coluna - 4);
+                Posicao destinoDaTorre = new Posicao(origem.linha, origem.coluna - 1);
+
+                Peca Torre = tab.retirarPeca(destinoDaTorre);
+                Torre.decrementarQteMovimentos();
+                tab.colocarPeca(Torre, origemDaTorre);
+
+            }
+
+
         }
 
         private void mudaJogador()
